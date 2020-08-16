@@ -1,9 +1,15 @@
 body {
     width: calc(100vw - (100vw - 100%));
+    height: 100vh;
     margin: 0;
     padding: 0;
     border:1px solid red;
 }
 .container__gallery{            
         
+}
+.content__gallery{
+    display: grid;
+    border: 1px solid blue;
+    width: max-content;
 }
