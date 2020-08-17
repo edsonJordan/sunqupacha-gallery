@@ -15,12 +15,19 @@ const autoAdd = () =>{
           })                      
         }
     autoAdd()
+    let touch=0;  
     const gallery = document.getElementById('gallery__photo');
-    gallery?.addEventListener('click touchend', (e)=>{
-    /*   if(e.targetTouches.length === 2){          
-          alert("dobletouch")
-      } */
-      console.log(e);
-      
-    })             
+    gallery?.addEventListener('click', (e)=>{            
+      touch++     
+      if(touch == 1){        
+      var time = setTimeout(function(){ touch=0}, 400);          
+      }else {              
+        const cora = document.getElementById("cora");
+        
+        cora.style.left =JSON.stringify(e.pageX) + "px";                                              
+        cora.style.top = JSON.stringify(e.pageY) + "px";                                              
+    }           
+        
+    })
+    
   

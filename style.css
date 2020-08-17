@@ -1,9 +1,40 @@
+:root{
+    --size-cora:60px;    
+}
 body {
     width: calc(100vw - (100vw - 100%));
     height: 100vh;
     margin: 0;
-    padding: 0;
-    
+    padding: 0;    
+}
+.cora{
+    position: absolute;
+    background-color: red;    
+    width:var(--size-cora);
+    height: var(--size-cora);
+    transform: rotate(-45deg);    
+    top: 50px;
+    left: 40px;
+}
+.cora::before{
+    position: absolute;
+    display: block;
+    content: "";
+    background-color: red;
+    border-radius: 50%;
+    left: calc(var(--size-cora)/2);
+    width: var(--size-cora);
+    height: var(--size-cora);
+}
+.cora::after{
+    position: absolute;
+    display: block;
+    content: "";
+    background-color: red;
+    border-radius: 50%;
+    bottom: calc(var(--size-cora)/2);
+    width: var(--size-cora);
+    height: var(--size-cora);
 }
 .container__gallery{     
                
