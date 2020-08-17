@@ -1,7 +1,7 @@
 
 const autoAdd = () =>{
   
-    fetch('https://rickandmortyapi.com/api/character/?page=3')
+    fetch('https://rickandmortyapi.com/api/character/?page=1')
         .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
         .then(res=> res.json())
         .then(res => {           
@@ -10,13 +10,12 @@ const autoAdd = () =>{
           for(const data of res.results){
            const newImage = document.createElement('img')
               newImage.setAttribute('src', data.image)
+              newImage.classList.add('img_photo')
               fragment.appendChild(newImage)                             
-            }                                                                
-            image?.appendChild(fragment)            
+              }                                                                
+              image?.appendChild(fragment)            
           })
-          
-            
-
+                      
         }     
 /* 
   .then(res => {
