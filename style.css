@@ -17,17 +17,25 @@ body {
     grid-auto-rows: 150px; 
     /* grid-template-rows: repeat(auto, minmax(auto-fill, 1fr)) ; */
     grid-auto-columns: 90px;
-    grid-gap: 10px;    
- grid-auto-flow   : row  dense;
+    grid-gap: 14px;    
+    grid-auto-flow   : row  dense;
+    margin: .4rem;
 }
 .img_photo{
     width: 100%;
     height: 100%;
     object-fit: cover; 
+    box-shadow: 0 4px 8px 0 rgba(173, 11, 11, 0.575), 0 3px 10px 0 rgba(173, 11, 11, 0.575);    
 }
+
 .img_photo:nth-child(2n + 1){
     grid-area: span 1 / span 2;
    }
 .img_photo:nth-child(3n){    
        grid-area: span 2 / span 1;
    }
+/* Content gallery */
+.gallery__content{
+    display: flex;
+    flex-direction: column;
+}

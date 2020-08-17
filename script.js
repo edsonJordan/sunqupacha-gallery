@@ -1,6 +1,4 @@
-
-const autoAdd = () =>{
-  
+const autoAdd = () =>{  
     fetch('https://rickandmortyapi.com/api/character/?page=1')
         .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
         .then(res=> res.json())
@@ -12,46 +10,17 @@ const autoAdd = () =>{
               newImage.setAttribute('src', data.image)
               newImage.classList.add('img_photo')
               fragment.appendChild(newImage)                             
-              }                                                                
+                }                                                                
               image?.appendChild(fragment)            
-          })
-                      
-        }     
-/* 
-  .then(res => {
-            const fragment = document.createDocumentFragment()
-            res.data.forEach(element => {
-                const newImage = document.createElement('IMG')
-                newImage.src = element.download_url
-                fragment.appendChild(newImage)
-            })
-            images.appendChild(fragment)
-            setObserver()
-        }) */
-
-          /*   res.data.forEach(element => {
-                const newImage = document.createElement('IMG')
-                newImage.src = element.download_url
-                fragment.appendChild(newImage)
-            })
-            images.appendChild(fragment)
-           */        
-          /*   const phot= document.getElementById('gallery__photo');            
-            const fragment = document.createDocumentFragment();
-                for(const data of res){
-                const content = document.createElement('DIV');
-                const img = document.createElement('IMG');
-                                                
-                content.classList.add("div_photo")
-                img.classList.add("img_photo");
-                img.src= element.
-                 const contList = document.createElement('UL');                
-                const listItem = document.createElement('LI'); 
-
-                content.classList.add("card");
-                 contList.classList.add("card__ul");
-                listItem.classList.add("card__li");                 
-                console.log(res) } */                                         
-      
-    
+          })                      
+        }
     autoAdd()
+    const gallery = document.getElementById('gallery__photo');
+    gallery?.addEventListener('click touchend', (e)=>{
+    /*   if(e.targetTouches.length === 2){          
+          alert("dobletouch")
+      } */
+      console.log(e);
+      
+    })             
+  
