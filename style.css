@@ -5,8 +5,10 @@ body {
     width: calc(100vw - (100vw - 100%));
     height: 100vh;
     margin: 0;
-    padding: 0;    
+    padding: 0; 
+    overflow-x: unset;
 }
+
 .cora{
     position: absolute;
     background-color: red;    
