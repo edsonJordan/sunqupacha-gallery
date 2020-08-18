@@ -15,8 +15,13 @@ const autoAdd = () =>{
           })                      
         }
     autoAdd()
-    let touch=0;  
+    const cora = document.getElementById("cora"); 
+    cora?.addEventListener('animationend', (e)=> {      
+      cora.classList.add("none");     
+    })
     
+    
+    let touch=0;      
     const gallery = document.getElementById('gallery__photo');
     gallery?.addEventListener('mousemove', (e)=>{
       
@@ -26,11 +31,11 @@ const autoAdd = () =>{
       touch++     
       if(touch == 1){        
       var time = setTimeout(function(){ touch=0}, 400);          
-      }else {             
-      
-        const cora = document.getElementById("cora");        
-        cora.style.left =JSON.stringify(e.pageX) + "px";                                              
-        cora.style.top = JSON.stringify(e.pageY) + "px";                                              
+      }else {                     
+        const cora = document.getElementById("cora"); 
+        cora?.classList.toggle('none')       
+        cora.style.left =JSON.stringify((e.pageX)-25) + "px";                                              
+        cora.style.top = JSON.stringify((e.pageY)-25) + "px";                                              
     }           
         
     })
