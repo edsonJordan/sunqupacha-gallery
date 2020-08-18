@@ -65,7 +65,8 @@ body {
     width:var(--size-cora);
     height: var(--size-cora);       
     top: 50px;
-    left: 40px;        
+    left: 40px;  
+    border-bottom-left-radius: 15% ;      
 }
 .cora::before{
     position: absolute;
