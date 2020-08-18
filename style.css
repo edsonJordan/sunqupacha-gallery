@@ -1,5 +1,8 @@
 :root{
     --size-cora:50px;    
+    --rotate-center:-45deg;
+    --rotate-right:-25deg;
+    --rotate-left:-65deg;
 }
 body {
     width: calc(100vw - (100vw - 100%));
@@ -11,16 +14,50 @@ body {
     display: none;
 }
 /* Animation core */
-@keyframes throb{
+@keyframes throb-left{
     0% {
-        transform: scale(.6) rotate(-45deg);        
+        transform: scale(.6) rotate(var(--rotate-left));        
     }
     50%{
-        transform: scale(1.2) rotate(-45deg);
+        transform: scale(1.2) rotate(var(--rotate-left));
+    }
+    75%{
+        transform: scale(1) rotate(var(--rotate-left));        
     }
     100%{
-        transform: scale(1) rotate(-45deg);        
+        transform: scale(.6) rotate(var(--rotate-left) );        
     }
+}
+@keyframes throb-center{
+    0% {
+        transform: scale(.6) rotate(var(--rotate-center));        
+    }
+    50%{
+        transform: scale(1.2) rotate(var(--rotate-center));
+    }
+    75%{
+        transform: scale(1) rotate(var(--rotate-center));        
+    }
+    100%{
+        transform: scale(.6) rotate(var(--rotate-center) );        
+    }
+}
+@keyframes throb-right{
+    0% {
+        transform: scale(.6) rotate(var(--rotate-right));        
+    }
+    50%{
+        transform: scale(1.2) rotate(var(--rotate-right));
+    }
+    75%{
+        transform: scale(1) rotate(var(--rotate-right));        
+    }
+    100%{
+        transform: scale(.6) rotate(var(--rotate-right) );        
+    }
+}
+.anima_center{
+    animation: throb .6s;
 }
 .cora{    
     position: absolute;
@@ -28,9 +65,7 @@ body {
     width:var(--size-cora);
     height: var(--size-cora);       
     top: 50px;
-    left: 40px;
-    animation: throb .7s;
-    transform: rotate(-45deg);
+    left: 40px;        
 }
 .cora::before{
     position: absolute;
