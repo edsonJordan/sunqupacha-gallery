@@ -1,5 +1,6 @@
-const autoAdd = () =>{  
-    fetch('https://rickandmortyapi.com/api/character/?page=1')
+let pag = 2;
+const getImage = () =>{  
+    fetch('https://rickandmortyapi.com/api/character/?page='+pag)
         .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
         .then(res=> res.json())
         .then(res => {           
@@ -11,33 +12,44 @@ const autoAdd = () =>{
               newImage.classList.add('img_photo')
               fragment.appendChild(newImage)                             
                 }                                                                
-              image?.appendChild(fragment)            
+              image?.appendChild(fragment)
+              setScroll(image);                      
           })                      
         }
-    autoAdd()
-
+      getImage()    
+      const callback = (entries) =>{      
+        for (const data of entries) {
+            if(data.isIntersecting){
+              getImage()
+              }       
+            }
+          //console.log(entries);
+      }
+const setScroll = (image) =>{
+      const pOption ={
+           threshold: 0.99
+      }
+      const scroll = new IntersectionObserver(callback, pOption);
+      scroll.observe(image.lastElementChild);
+}
     /* End animation */
     const cora = document.getElementById("cora"); 
     cora?.addEventListener('animationend', (e)=> {      
       cora.classList.add("none");     
       cora.style.animation ='';
-    })
-    
+    })    
     /* Animation */
     let touch=0;      
     const gallery = document.getElementById('gallery__photo');
     gallery?.addEventListener('mousemove', (e)=>{
       
     })
-    gallery?.addEventListener('click', (e)=>{            
-      
+    gallery?.addEventListener('click', (e)=>{           
       touch++     
       if(touch == 1){        
       var time = setTimeout(function(){ touch=0}, 400);          
       }else {                     
         const cora = document.getElementById("cora"); 
-        //cora?.classList.add('anima_center')//throb
-        //cora.style.animation ='throb-left .6s';
         let thRandom= Math.round(Math.random()*(3-1)+1);
         switch (thRandom) {
           case 1:
@@ -51,10 +63,9 @@ const autoAdd = () =>{
             break;         
         }       
         cora?.classList.toggle('none')               
-        cora.style.left =JSON.stringify((e.pageX)-25) + "px";                                              
-        cora.style.top = JSON.stringify((e.pageY)-25) + "px";                                              
-    }           
-        
+            cora.style.left =JSON.stringify((e.pageX)-25) + "px";                                              
+            cora.style.top = JSON.stringify((e.pageY)-25) + "px";                                              
+            }                   
     })
     
   
