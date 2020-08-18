@@ -1,4 +1,5 @@
 :root{
+    --bg-cora:#FF4A60;
     --size-cora:50px;    
     --rotate-center:-45deg;
     --rotate-right:-25deg;
@@ -61,7 +62,7 @@ body {
 }
 .cora{    
     position: absolute;
-    background-color: red;    
+    background-color: var(--bg-cora);    
     width:var(--size-cora);
     height: var(--size-cora);       
     top: 50px;
@@ -72,7 +73,7 @@ body {
     position: absolute;
     display: block;
     content: "";
-    background-color: red;
+    background-color: var(--bg-cora);
     border-radius: 50%;
     left: calc(var(--size-cora)/2);
     width: var(--size-cora);
@@ -83,7 +84,7 @@ body {
     position: absolute;
     display: block;
     content: "";
-    background-color: red;
+    background-color: var(--bg-cora);
     border-radius: 50%;
     bottom: calc(var(--size-cora)/2);
     width: var(--size-cora);
