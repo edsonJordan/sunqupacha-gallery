@@ -1,4 +1,4 @@
-export class Random{
+class Random{
     constructor(){
         this.number=[];    
     }

@@ -1,7 +1,5 @@
-import {Random} from '/random.js';
+import {Random} from "./random.js";
 const rNum =  new Random();
-
-
 const getImage = () =>{  
     let pagRandom= Math.round(Math.random()*(34-1)+1);    
     /* ${pagRandom} */    
