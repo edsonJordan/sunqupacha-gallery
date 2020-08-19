@@ -1,11 +1,9 @@
-
 let pag = 2;
 const getImage = () =>{  
     fetch('https://rickandmortyapi.com/api/character/?page='+pag)
         .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
         .then(res=> res.json())
         .then(res => {
-
           const image = document.getElementById('gallery__photo');                                             
           const fragment = document.createDocumentFragment();                            
           for(const data of res.results){
