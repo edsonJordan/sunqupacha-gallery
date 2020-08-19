@@ -1,36 +1,10 @@
-import {Random} from '/random.js';
-const rNum =  new Random();
+/* import {Random} from '/random.js';
+const rNum =  new Random(); */
 
 
 const getImage = () =>{  
-<<<<<<< HEAD
-    let pagRandom= Math.round(Math.random()*(34-1)+1);    
-    /* ${pagRandom} */    
-    const pag = [];
-    if(rNum.getnumber().indexOf(pagRandom) == -1){      
-      rNum.setnumber(pagRandom)                                  
-      fetch(`https://rickandmortyapi.com/api/character/?page=1`)
-      .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
-      .then(res=> res.json())
-      .then(res => {
-        const image = document.getElementById('gallery__photo');                                             
-        const fragment = document.createDocumentFragment();                            
-        for(const data of res.results){
-         const newImage = document.createElement('img')
-            newImage.setAttribute('src', data.image)
-            newImage.setAttribute('id', data.id)
-            newImage.classList.add('img_photo')
-            fragment.appendChild(newImage)                             
-              }                                                                
-            image?.appendChild(fragment)
-            setScroll(image);                      
-        }) 
-      
-    }else{
-    /* content because repeat  */       
-    }                                            
-          
-=======
+                                                    
+
     fetch('https://rickandmortyapi.com/api/character/?page='+pag)
         .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
         .then(res=> res.json())
@@ -46,7 +20,7 @@ const getImage = () =>{
               image?.appendChild(fragment)
               setScroll(image);                      
           })                      
->>>>>>> parent of 3c8c18d... agregando style a imagenes seleccionadas
+
         }
       getImage()    
       const callback = (entries) =>{      
