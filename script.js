@@ -1,41 +1,27 @@
-<<<<<<< HEAD
-/* import {Random} from '/random.js';
-const rNum =  new Random(); */
 
-
-const getImage = () =>{  
-                                                    
-    fetch('https://rickandmortyapi.com/api/character/?page=1')
-        .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
-        .then(res=> res.json())
-        .then(res => {           
-=======
 let pag = 2;
 const getImage = () =>{  
     fetch('https://rickandmortyapi.com/api/character/?page='+pag)
         .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
         .then(res=> res.json())
         .then(res => {
->>>>>>> parent of 5376fba... agregando a fecth paginacion random
+
           const image = document.getElementById('gallery__photo');                                             
           const fragment = document.createDocumentFragment();                            
           for(const data of res.results){
            const newImage = document.createElement('img')
               newImage.setAttribute('src', data.image)
-<<<<<<< HEAD
-=======
               newImage.setAttribute('id', data.id)
->>>>>>> parent of 5376fba... agregando a fecth paginacion random
               newImage.classList.add('img_photo')
               fragment.appendChild(newImage)                             
                 }                                                                
               image?.appendChild(fragment)
               setScroll(image);                      
           })                      
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 5376fba... agregando a fecth paginacion random
+
+
+
         }
       getImage()    
       const callback = (entries) =>{      
