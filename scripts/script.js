@@ -21,7 +21,8 @@ const getImage = () =>{
             fragment.appendChild(newImage)                             
               }                                                                
             image?.appendChild(fragment)
-            setScroll(image);                      
+            //setScroll(image); 
+            scroll();                     
         }) 
       
     }else{
@@ -30,21 +31,31 @@ const getImage = () =>{
           
         }
       getImage()    
-      const callback = (entries) =>{      
+      /* const callback = (entries) =>{      
         for (const data of entries) {
             if(data.isIntersecting){
               getImage()
               }       
             }
-          //console.log(entries);
+          
+      } */
+      const scroll=() =>{
+          window.onscroll = function (){
+            // Obtenemos la posicion del scroll en pantall
+            if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+              getImage()
+            }
+        }
+
       }
-const setScroll = (image) =>{
+      
+/* const setScroll = (image) =>{
       const pOption ={
            threshold: 0.99
       }
       const scroll = new IntersectionObserver(callback, pOption);
       scroll.observe(image.lastElementChild);
-}
+} */
     /* End animation */
     const cora = document.getElementById("cora"); 
     cora?.addEventListener('animationend', (e)=> {      
