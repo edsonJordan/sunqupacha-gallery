@@ -4,8 +4,7 @@ const rNum =  new Random(); */
 
 const getImage = () =>{  
                                                     
-
-    fetch('https://rickandmortyapi.com/api/character/?page='+pag)
+    fetch('https://rickandmortyapi.com/api/character/?page=1')
         .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
         .then(res=> res.json())
         .then(res => {           

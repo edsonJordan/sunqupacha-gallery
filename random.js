@@ -1,4 +1,4 @@
-export class Random{
+/* export class Random{
     constructor(){
         this.number=[];    
     }
@@ -8,4 +8,4 @@ export class Random{
     getnumber(){
         return this.number;
     }
-}
+} */
