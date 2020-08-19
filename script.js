@@ -26,8 +26,7 @@ const getImage = () =>{
         }) 
       
     }else{
-      console.log("Se repite");
-      console.log(rNum.getnumber());            
+    /* content because repeat  */       
     }                                            
           
         }
