@@ -7,7 +7,7 @@ const getImage = () =>{
     const pag = [];
     if(rNum.getnumber().indexOf(pagRandom) == -1){      
       rNum.setnumber(pagRandom)                                  
-      fetch(`https://rickandmortyapi.com/api/character/?page=1`)
+      fetch(`https://rickandmortyapi.com/api/character/?page=${pagRandom}`)
       .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
       .then(res=> res.json())
       .then(res => {
