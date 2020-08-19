@@ -1,6 +1,8 @@
 import {Random} from "./random.js"
-
 const rNum =  new Random();
+
+
+
 const getImage = () =>{  
     let pagRandom= Math.round(Math.random()*(34-1)+1);    
     /* ${pagRandom} */    
@@ -24,11 +26,11 @@ const getImage = () =>{
             //setScroll(image); 
             scroll();                     
         }) 
-      
+
+        
     }else{
     /* content because repeat  */       
     }                                            
-          
         }
       getImage()    
       /* const callback = (entries) =>{      
@@ -68,7 +70,19 @@ const getImage = () =>{
     gallery?.addEventListener('mousemove', (e)=>{
       
     })
-    gallery?.addEventListener('click', (e)=>{           
+    gallery?.addEventListener('click', (e)=>{  
+      const midScreen = Math.round((screen.height + 131)/2);
+      if(midScreen > e.screenY){
+        console.log("Estas tocando de la mitad para arriba");       
+      }else{
+        console.log("Estas tocando de la mitad para abajo");       
+      }
+
+      /* console.log("toque "+e.screenY);
+      console.log("tamaño es "+screen.height); */
+      /* console.log("toque "+e.screenY);   
+      console.log(screen); */
+            
       touch++     
       if(touch == 1){        
       var time = setTimeout(function(){ touch=0}, 400);          
