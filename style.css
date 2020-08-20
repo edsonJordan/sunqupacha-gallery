@@ -4,6 +4,8 @@
     --rotate-center:-45deg;
     --rotate-right:-25deg;
     --rotate-left:-65deg;
+    /* Colors content menu */
+    --bg-content-menu: rgba(0, 0, 0, 0.7);
     /* colors icons menu */
     --bg-icon-primary:white;
     /* dimension icons menu */
@@ -133,16 +135,11 @@ body {
        grid-area: span 2 / span 1;
        
    }
-/* Content gallery */
-.gallery__content{
-    display: flex;
-    flex-direction: column;
-    background-color: blue;
-}
+
 /* Content gallery content */
 .gallery__content{
     position: fixed;
-    display: flexbox;
+    display: flex;
     flex-direction: row;
     min-height: min-content;
     height: 60px;
@@ -225,9 +222,42 @@ body {
 .gallery__comments{
     position: relative;
     margin: auto;
-    height: 20px;
-    width: 20%;
-    background-color: blue;
+    height: calc(var(--height--icon) * 1.5);
+    width: calc(var(--width--icon) * 1.5);
+    background-color: white;
+    border-radius: 10%;
+    border-bottom-right-radius: 45%;
+    border-bottom-left-radius: 45%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+}
+.gallery__comments::before{
+    content: "";
+    display: block;
+    position: relative;
+    top: calc(calc(var(--height--icon) / 6));
+    margin: auto;    
+    height: calc(var(--height--icon) * 1.1);
+    width: calc(var(--width--icon) * 1.1);
+    background-color: var(--bg-content-menu);
+    border-radius: 10%;
+    border-bottom-right-radius: 45%;
+    border-bottom-left-radius: 45%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+}
+.gallery__comments::after{
+    content: "";
+    display: block;       
+    position: relative;
+    margin: auto;
+    border-radius: 20%;
+    bottom: calc(var(--height--icon) * 0.6);
+    /* top:-calc(var(--height--icon) * 12) ; */        
+    height: calc(var(--height--icon) * 0.2);
+    left: calc(var(--width--icon) * 0.012);
+    /* top: calc(calc(var(--height--icon) /12)); */
+    width: calc(var(--width--icon) * 0.7);
+    /* width: calc(var(--width--icon) * 1.1); */
+    background-color: white;
 }
 .gallery__shared{
     position: relative;
