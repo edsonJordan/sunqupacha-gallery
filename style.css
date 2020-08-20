@@ -185,7 +185,7 @@ body {
     background-color: var(--bg-content-menu);
     border-radius: .5rem;
     top: calc(var(--height--icon) * 0.3);
-    height: calc(var(--height--icon) * 0.6);
+    height: calc(var(--height--icon) * 0.55);
     width: calc(var(--width--icon) * 0.15);
 }
 /* Icon Like */
@@ -193,8 +193,7 @@ body {
     position: relative;
     height: var(--height--icon);
     width: var(--width--icon);    
-    margin: auto;
-    
+    margin: auto;   
     background-color: var(--bg-icon-primary) ;
     border-radius: .2rem;
     transform: rotate(-135deg);
@@ -219,7 +218,6 @@ body {
     width: var(--width--icon);
     border-radius: 100%;
 }
-
 .gallery__comments{
     position: relative;
     margin: auto;
@@ -267,9 +265,9 @@ body {
 .shared--arc{
     position: relative;    
     margin: auto;            
-    height: calc(var(--height--icon)* 1.4);
-    width: calc(var(--width--icon) * 1.4);
-    top: calc(var(--height--icon) *1);    
+    height: calc(var(--height--icon)* 1.2);
+    width: calc(var(--width--icon) * 1.2);
+    top: calc(var(--height--icon) * 0.8);    
     border-radius: 100%;
     background-color: var(--bg-icon-primary);    
     clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);    
@@ -280,8 +278,8 @@ body {
     position: relative;    
     display: block;            
     height: calc(var(--height--icon)* 1);
-    width: calc(var(--width--icon) * 1.2);
-    top: calc(var(--height--icon) * 0.2);
+    width: calc(var(--width--icon) * 1.1);
+    top: calc(var(--height--icon) * 0.12);
     border-radius: 100%;
     background-color: var(--bg-content-menu);
     clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);        
@@ -291,9 +289,9 @@ body {
 .shared--circle{
     position: relative;    
     margin: auto;         
-    top: -30px;   
-    height: calc(var(--height--icon)* 0.5);
-    width: calc(var(--width--icon) * 0.5);
+    top: -28px;   
+    height: calc(var(--height--icon)* 0.4);
+    width: calc(var(--width--icon) * 0.4);
     border-radius: 100%;
     background-color: transparent;
     border: .2rem solid var(--bg-icon-primary) ;
