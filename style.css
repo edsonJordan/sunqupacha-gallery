@@ -207,6 +207,7 @@ body {
     height: var(--height--icon);
     width: var(--width--icon);
     border-radius: 100%;
+
 }
 .gallery__likes::after{
     content: "";
@@ -218,6 +219,13 @@ body {
     width: var(--width--icon);
     border-radius: 100%;
 }
+.gallery__likes.true, .gallery__likes.true::before, .gallery__likes.true::after{    
+    box-shadow: 1.2em 0 0.2em blue;    
+}
+.gallery__likes.true{
+    
+}
+/* Icon comments */
 .gallery__comments{
     position: relative;
     margin: auto;
@@ -262,6 +270,7 @@ body {
     position: relative;    
     margin: auto;                
 }
+/* Icon user */
 .shared--arc{
     position: relative;    
     margin: auto;            
@@ -284,8 +293,6 @@ body {
     background-color: var(--bg-content-menu);
     clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);        
 } 
-
-
 .shared--circle{
     position: relative;    
     margin: auto;         

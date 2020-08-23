@@ -76,13 +76,7 @@ const getImage = () =>{
         console.log("Estas tocando de la mitad para arriba");       
       }else{
         console.log("Estas tocando de la mitad para abajo");       
-      }
-
-      /* console.log("toque "+e.screenY);
-      console.log("tamaño es "+screen.height); */
-      /* console.log("toque "+e.screenY);   
-      console.log(screen); */
-            
+      }            
       touch++     
       if(touch == 1){        
       var time = setTimeout(function(){ touch=0}, 400);          
@@ -99,7 +93,11 @@ const getImage = () =>{
           case 3:
             cora.style.animation ='throb-right .6s';
             break;         
-        }
+                          
+          }
+          /* Event node like */
+          const nLike=document.getElementById("gallery__likes");
+          nLike.classList.toggle('true')
           //console.log(e.target.nodeName);
             if(e.target.nodeName == "IMG"){
               let imgSelect = document.getElementById(e.target.id);
