@@ -24,8 +24,8 @@ const getImage = () =>{
     /* ${pagRandom} */    
     const pag = [];
     if(rNum.getnumber().indexOf(pagRandom) == -1){      
-      rNum.setnumber(pagRandom)                              /*  */    
-      fetch(`https://rickandmortyapi.com/api/character/?page=${pagRandom}`)
+      rNum.setnumber(pagRandom)                              /* ${pagRandom} */    
+      fetch(`https://rickandmortyapi.com/api/character/?page=1`)
       .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
       .then(res=> res.json())
       .then(res => {
@@ -131,11 +131,7 @@ const getImage = () =>{
         } 
         /* toggle and location core and animation */
         const nLike=document.getElementById("gallery__likes");
-        nLike.classList.toggle('true')                      
-        cora?.classList.toggle('none')               
-        cora.style.left =JSON.stringify((e.pageX)-25) + "px";                                              
-        cora.style.top = JSON.stringify((e.pageY)-25) + "px";  
-        animation();                       
+        nLike.classList.toggle('true')                                                                                    
         const likes =JSON.parse(localStorage.getItem("Likes"))                        
           let search = false;                              
         if(likes && likes.length > 0  ){                                   
@@ -148,22 +144,34 @@ const getImage = () =>{
           }        
           else{
             localStorage.setItem('Likes', JSON.stringify([{id :e.target.id , photo: e.target.name}]));            
-          } 
-          searchLike(search, e.target, likes);                           
+            
+          }                     
+          searchLike(search, e.target, likes, e.pageX, e.pageY);                           
           if(search){
-            console.log("existe");    
-            outpLike(e.target.id);        
+              for (const iterator of likes) {
+                if(iterator.id == e.target.id){
+                  /* dataLocal.splice(dataLocal.indexOf(iterator), 1);   */                                      
+                    likes.splice(likes.indexOf(iterator), 1);  
+                    localStorage.setItem('Likes', JSON.stringify(likes));                                    
+                    break
+                }
+                // deslike animation(e.pageX, e.pageY);    
+              }
+              outpLike(e.target.id)        
+              console.log("deslikes");
+                              
           }                                                                                     
       }                  
     })
-    const searchLike =(Boolean , event, likes) =>{            
+    const searchLike =(Boolean , event, likes, pageX, pageY) =>{            
       if(likes == null){
         likes = [];
       }
       if(!Boolean){                
         likes[likes.length]={id :event.id , photo: event.name};
         localStorage.setItem('Likes', JSON.stringify(likes))
-        paintLike(event.id)                
+        paintLike(event.id)          
+        animation(pageX, pageY);                                         
       }
     }
     const paintLike = (id)=>{
@@ -172,10 +180,13 @@ const getImage = () =>{
     }
     const outpLike = (id) =>{
       let imgSelect = document.getElementById(id);                
-      imgSelect?.classList.remove("img_like"); 
+      imgSelect?.classList.remove("img_like");       
     }
-    const animation = ()=>{
+    const animation = (pageX, pageY)=>{
       const cora = document.getElementById("cora"); 
+      cora?.classList.toggle('none')     
+      cora.style.left =JSON.stringify((pageX)-25) + "px";                                              
+        cora.style.top = JSON.stringify((pageY)-25) + "px";  
       let thRandom= Math.round(Math.random()*(3-1)+1);
       switch (thRandom) {
         case 1:
