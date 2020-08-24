@@ -1,27 +1,71 @@
 import {Random} from "./random.js"
 const rNum =  new Random();
 
+const setLikes=(data)=>{
+  /* {id:1, photo: "img/1"}, {id:2, photo: "img/2"}, {id:3, photo: "img/3"} */
+  const readLikes= JSON.parse(localStorage.getItem('Likes'));      
+  console.log(data);
+  
+  /* if(!readLocal){
+      localStorage.setItem('Likes', JSON.stringify(data));
+  }else{        
+      readLocal[readLocal.length]=data[0];        
+      localStorage.setItem('Likes', JSON.stringify(readLocal));
+  } */
+}
 
 
-const getImage = () =>{  
+
+
+
+
+const getImage = () =>{     
     let pagRandom= Math.round(Math.random()*(34-1)+1);    
     /* ${pagRandom} */    
     const pag = [];
     if(rNum.getnumber().indexOf(pagRandom) == -1){      
-      rNum.setnumber(pagRandom)                                  
+      rNum.setnumber(pagRandom)                              /*  */    
       fetch(`https://rickandmortyapi.com/api/character/?page=${pagRandom}`)
       .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
       .then(res=> res.json())
       .then(res => {
         const image = document.getElementById('gallery__photo');                                             
-        const fragment = document.createDocumentFragment();                            
-        for(const data of res.results){
-         const newImage = document.createElement('img')
-            newImage.setAttribute('src', data.image)
-            newImage.setAttribute('id', data.id)
-            newImage.classList.add('img_photo')
-            fragment.appendChild(newImage)                             
-              }                                                                
+        const fragment = document.createDocumentFragment();
+        const likes =JSON.parse(localStorage.getItem("Likes"))
+        if(!likes){
+          for(const data of res.results){                    
+            const newImage = document.createElement('img')
+               newImage.setAttribute('src', data.image)
+               newImage.setAttribute('name', data.name)
+               newImage.setAttribute('species', data.species)            
+               newImage.setAttribute('gender', data.gender)
+               newImage.setAttribute('status', data.status)
+               newImage.setAttribute('id', data.id)
+               newImage.classList.add('img_photo')
+               fragment.appendChild(newImage)                             
+            } 
+        }else{
+          for(const data of res.results){                    
+            const newImage = document.createElement('img')
+               newImage.setAttribute('src', data.image)
+               newImage.setAttribute('name', data.name)
+               newImage.setAttribute('species', data.species)
+               for (const iterator of likes) {
+                  if(iterator.id == data.id){
+              newImage.classList.add("img_like");
+                    break;
+                  }               
+               }            
+               newImage.setAttribute('gender', data.gender)
+               newImage.setAttribute('status', data.status)
+               newImage.setAttribute('id', data.id)
+               newImage.classList.add('img_photo')
+               fragment.appendChild(newImage)                             
+            }
+
+        }
+                                                 
+                                                                     
             image?.appendChild(fragment)
             //setScroll(image); 
             scroll();                     
@@ -70,43 +114,81 @@ const getImage = () =>{
     gallery?.addEventListener('mousemove', (e)=>{
       
     })
-    gallery?.addEventListener('click', (e)=>{  
-      const midScreen = Math.round((screen.height + 131)/2);
-      if(midScreen > e.screenY){
-        console.log("Estas tocando de la mitad para arriba");       
-      }else{
-        console.log("Estas tocando de la mitad para abajo");       
-      }            
+    gallery?.addEventListener('click', (e)=>{                  
+      /* Double click */           
       touch++     
       if(touch == 1){        
-      var time = setTimeout(function(){ touch=0}, 400);          
-      }else {                     
-        const cora = document.getElementById("cora"); 
-        let thRandom= Math.round(Math.random()*(3-1)+1);
-        switch (thRandom) {
-          case 1:
-            cora.style.animation ='throb-left .6s';
-            break;
-          case 2:
-            cora.style.animation ='throb-center .6s';
-            break;
-          case 3:
-            cora.style.animation ='throb-right .6s';
-            break;         
-                          
-          }
-          /* Event node like */
-          const nLike=document.getElementById("gallery__likes");
-          nLike.classList.toggle('true')
-          //console.log(e.target.nodeName);
-            if(e.target.nodeName == "IMG"){
-              let imgSelect = document.getElementById(e.target.id);
-              imgSelect?.classList.toggle("img_like");
-            }            
-            cora?.classList.toggle('none')               
-            cora.style.left =JSON.stringify((e.pageX)-25) + "px";                                              
-            cora.style.top = JSON.stringify((e.pageY)-25) + "px";                                              
-            }                   
+      var time = setTimeout(function(){ touch=0}, 400); 
+      return         
+      }            
+      if(e.target.nodeName == "IMG"){
+
+        const midScreen = Math.round((screen.height + 131)/2);            
+        if(midScreen > e.screenY){
+          //console.log("Estas tocando de la mitad para arriba");       
+        }else{
+          //console.log("Estas tocando de la mitad para abajo");       
+        } 
+        /* toggle and location core and animation */
+        const nLike=document.getElementById("gallery__likes");
+        nLike.classList.toggle('true')                      
+        cora?.classList.toggle('none')               
+        cora.style.left =JSON.stringify((e.pageX)-25) + "px";                                              
+        cora.style.top = JSON.stringify((e.pageY)-25) + "px";  
+        animation();                       
+        const likes =JSON.parse(localStorage.getItem("Likes"))                        
+          let search = false;                              
+        if(likes && likes.length > 0  ){                                   
+              for (const iterator of likes) {                                                    
+                  if(e.target.id === iterator.id){
+                    search = true;                    
+                    break;
+                  }        
+              }                                                                      
+          }        
+          else{
+            localStorage.setItem('Likes', JSON.stringify([{id :e.target.id , photo: e.target.name}]));            
+          } 
+          searchLike(search, e.target, likes);                           
+          if(search){
+            console.log("existe");    
+            outpLike(e.target.id);        
+          }                                                                                     
+      }                  
     })
+    const searchLike =(Boolean , event, likes) =>{            
+      if(likes == null){
+        likes = [];
+      }
+      if(!Boolean){                
+        likes[likes.length]={id :event.id , photo: event.name};
+        localStorage.setItem('Likes', JSON.stringify(likes))
+        paintLike(event.id)                
+      }
+    }
+    const paintLike = (id)=>{
+      let imgSelect = document.getElementById(id);                
+      imgSelect?.classList.add("img_like");        
+    }
+    const outpLike = (id) =>{
+      let imgSelect = document.getElementById(id);                
+      imgSelect?.classList.remove("img_like"); 
+    }
+    const animation = ()=>{
+      const cora = document.getElementById("cora"); 
+      let thRandom= Math.round(Math.random()*(3-1)+1);
+      switch (thRandom) {
+        case 1:
+          cora.style.animation ='throb-left .6s';
+          break;
+        case 2:
+          cora.style.animation ='throb-center .6s';
+          break;
+        case 3:
+          cora.style.animation ='throb-right .6s';
+          break;         
+                        
+        }
+    }
     
   
