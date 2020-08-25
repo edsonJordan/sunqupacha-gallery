@@ -13,19 +13,13 @@ const setLikes=(data)=>{
       localStorage.setItem('Likes', JSON.stringify(readLocal));
   } */
 }
-
-
-
-
-
-
 const getImage = () =>{     
     let pagRandom= Math.round(Math.random()*(34-1)+1);    
     /* ${pagRandom} */    
     const pag = [];
     if(rNum.getnumber().indexOf(pagRandom) == -1){      
       rNum.setnumber(pagRandom)                              /* ${pagRandom} */    
-      fetch(`https://rickandmortyapi.com/api/character/?page=1`)
+      fetch(`https://rickandmortyapi.com/api/character/?page=${pagRandom}`)
       .then(res => res.ok ? Promise.resolve(res): Promise.reject(res)) 
       .then(res=> res.json())
       .then(res => {
